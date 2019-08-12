@@ -9,8 +9,10 @@
 #import <AliyunOSSiOS/OSSService.h>
 #import <WeexSDK/WXSDKInstance.h>
 #import <WeexSDK/WXSDKEngine.h>
+#import <WeexPluginLoader/WeexPluginLoader.h>
 #import "farwolf.h"
 
+WX_PlUGIN_EXPORT_MODULE(oss, WXOSSModule)
 @implementation WXOSSModule
 
 WX_EXPORT_METHOD(@selector(upload:progress:callback:))
