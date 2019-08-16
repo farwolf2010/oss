@@ -11,6 +11,7 @@
 #import <WeexSDK/WXSDKEngine.h>
 #import <WeexPluginLoader/WeexPluginLoader.h>
 #import "farwolf.h"
+#import "farwolf_weex.h"
 
 WX_PlUGIN_EXPORT_MODULE(oss, WXOSSModule)
 @implementation WXOSSModule
@@ -43,7 +44,8 @@ WX_EXPORT_METHOD(@selector(upload:progress:callback:))
     // 必填字段
     put.bucketName = BucketName;
     put.objectKey =objectkey;
-    put.uploadingFileURL =[NSURL URLWithString:url];
+    url=[url replace:PREFIX_SDCARD withString:@""];
+    put.uploadingFileURL =[NSURL fileURLWithPath:url];
     
     
     
