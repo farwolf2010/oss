@@ -12,7 +12,7 @@
 #import <WeexPluginLoader/WeexPluginLoader.h>
 #import "farwolf.h"
 #import "farwolf_weex.h"
-
+static OSSClient *ossClient;
 WX_PlUGIN_EXPORT_MODULE(oss, WXOSSModule)
 @implementation WXOSSModule
 
@@ -38,7 +38,7 @@ WX_EXPORT_METHOD(@selector(upload:progress:callback:))
     NSString *BucketName = [param objectForKey:@"BucketName"];
     
     id<OSSCredentialProvider> credential = [[OSSStsTokenCredentialProvider alloc] initWithAccessKeyId:AccessKeyId secretKeyId:AccessKeySecret securityToken:SecurityToken];
-    OSSClient *client = [[OSSClient alloc] initWithEndpoint:endpoint credentialProvider:credential];
+     ossClient = [[OSSClient alloc] initWithEndpoint:endpoint credentialProvider:credential];
     
     OSSPutObjectRequest * put = [OSSPutObjectRequest new];
     // 必填字段
@@ -63,7 +63,7 @@ WX_EXPORT_METHOD(@selector(upload:progress:callback:))
     // put.contentEncoding = @"";
     // put.contentDisposition = @"";
     // put.objectMeta = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"value1", @"x-oss-meta-name1", nil]; // 可以在上传时设置元信息或者其他HTTP头部
-    OSSTask * putTask = [client putObject:put];
+    OSSTask * putTask = [ossClient putObject:put];
     [putTask continueWithBlock:^id(OSSTask *task) {
         if (!task.error) {
             

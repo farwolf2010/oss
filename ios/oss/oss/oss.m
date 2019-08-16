@@ -7,7 +7,7 @@
 //
 
 #import "oss.h"
-
+#import <AliyunOSSiOS/OSSService.h>
 @implementation oss
-
+ 
 @end
