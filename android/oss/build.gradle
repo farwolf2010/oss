@@ -26,5 +26,5 @@ dependencies {
     api 'com.aliyun.dpa:oss-android-sdk:2.4.5'
     api 'com.squareup.okhttp3:okhttp:3.4.1'
     api 'com.squareup.okio:okio:1.9.0'
-    api project(':farwolf.weex')
+    api 'com.farwolf.weexplus:farwolf.weex:latest.integration'
 }
